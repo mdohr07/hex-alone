@@ -1,23 +1,53 @@
+import { useRef } from "react";
+
 interface SidebarProps {
-    onLoadMap?: () => void;
+    onLoadMap: (file: File) => void; /* -> handleLoadMap */
     onAddToken?: () => void;
-    onSave?: () => void;
-    onLoad: () => void;
+    onSaveGame?: () => void; /* -> handleSaveGame */
+    onLoadGame: () => void; /* -> handleLoadGame */
 }
+
+/* 
+Property 'onLoadMap' is missing in type '{ onLoad: () => void; }' but required in type 'SidebarProps'.
+*/
 
 export function Sidebar({
     onLoadMap,
     onAddToken,
-    onSave,
-    onLoad
+    onSaveGame,
+    onLoadGame
 }: SidebarProps) {
+
+    const fileInputRef = useRef<HTMLInputElement>(null);
+
+    function handleLoadMap() {
+        fileInputRef.current?.click();
+    }
+
+    function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const file = e.target.files?.[0];
+        if (file) {
+            onLoadMap(file); // gives file to Layout
+        }
+    }
+
     return (
         <aside className="sidebar">
-            <button onClick={onLoadMap}>Karte laden</button>
-            <button onClick={onAddToken}>Token hinzufügen</button>
+            <section className="logo"></section>
+
+            <button onClick={handleLoadMap}>Load map</button>
+            <input 
+                type="file" 
+                accept="image/*"
+                ref={fileInputRef}
+                onChange={handleFileChange}
+                style={{display: 'none' }}
+            />
+
+            <button onClick={onAddToken}>Add Token</button>
             <div className="sidebar-spacer" />
-            <button onClick={onSave}>Speichern</button>
-            <button onClick={onLoad}>Laden</button>
+            <button onClick={onSaveGame}>Save</button>
+            <button onClick={onLoadGame}>Load</button>
         </aside>
     );
 }
