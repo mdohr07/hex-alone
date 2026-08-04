@@ -7,10 +7,6 @@ interface SidebarProps {
     onLoadGame: () => void; /* -> handleLoadGame */
 }
 
-/* 
-Property 'onLoadMap' is missing in type '{ onLoad: () => void; }' but required in type 'SidebarProps'.
-*/
-
 export function Sidebar({
     onLoadMap,
     onAddToken,
