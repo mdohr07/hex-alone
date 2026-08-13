@@ -2,6 +2,7 @@ export interface MapData {
     id: string;
     name: string;
     imageUrl: string;
+    tokens: Token | undefined;
 }
 
 export interface Token {
@@ -9,5 +10,5 @@ export interface Token {
     mapId: string;
     label: string;
     color: string;
-    position: { x: number; y: number; }
+    position: { x: number; y: number; };
 }
