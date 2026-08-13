@@ -6,21 +6,28 @@ import type { Token } from '../types';
 export function Layout() {
     const [mapImageUrl, setMapImageUrl] = useState<string | null>(null);
     const [tokens, setTokens] = useState<Token[]>([]);
-    
+
     function handleMapFileSelected(file: File) {
         const url = URL.createObjectURL(file);
         setMapImageUrl(url);
     }
 
-    function handleAddToken () { const newToken = {
-        id: crypto.randomUUID(),
-        mapId: mapImageUrl ?? 'unknown',
-        label: `Token ${tokens.length + 1}`,
-        color: '#c96a4e',
-        position: { x: 100, y: 100 },
-    };
-    setTokens([...tokens, newToken]);
-}
+    function handleAddToken() {
+        const newToken = {
+            id: crypto.randomUUID(),
+            mapId: mapImageUrl ?? 'unknown',
+            label: `Token ${tokens.length + 1}`,
+            color: '#c96a4e',
+            position: { x: 100, y: 100 },
+        };
+        setTokens([...tokens, newToken]);
+    }
+
+    function handleTokenMove(id: string, position: { x: number; y: number }) {
+        setTokens(tokens.map(token => 
+            token.id === id ? { ...token, position } : token
+        ));
+    }
 
     return (
         <div className="layout">
@@ -31,7 +38,7 @@ export function Layout() {
                 onLoadGame={function (): void {
                     throw new Error('Function not implemented.');
                 }} />
-            <MapCanvas imageUrl={mapImageUrl} tokens={tokens} />
+            <MapCanvas imageUrl={mapImageUrl} tokens={tokens} onTokenMove={handleTokenMove}/>
         </div>
     );
 }
