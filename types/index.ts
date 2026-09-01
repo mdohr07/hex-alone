@@ -11,4 +11,5 @@ export interface Token {
     label: string;
     color: string;
     position: { x: number; y: number; };
+    placed: boolean;
 }

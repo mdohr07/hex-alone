@@ -23,9 +23,7 @@ export function MapCanvas({ imageUrl, tokens, onTokenMove }: MapCanvasProps) {
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
 
-        onTokenMove(draggingId, {x, y });
-
-         {/* TODO Karte nicht markieren bei Drag */}        
+        onTokenMove(draggingId, {x, y });     
     }
 
     function handleMouseUp() {

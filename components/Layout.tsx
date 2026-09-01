@@ -21,6 +21,7 @@ export function Layout() {
             label: `Token ${tokens.length + 1}`,
             color: '#c96a4e',
             position: { x: 100, y: 100 },
+            placed: false
         };
         setTokens([...tokens, newToken]);
     }
@@ -43,12 +44,12 @@ export function Layout() {
 
             <MapCanvas
                 imageUrl={mapImageUrl}
-                tokens={tokens}
+                tokens={tokens.filter(tkn => tkn.placed)}
                 onTokenMove={handleTokenMove}
             />
 
             {tokenMenuOpen && (
-                <TokenMenu onAddToken={handleAddToken} />
+                <TokenMenu onAddToken={handleAddToken} tokens={tokens} />
             )}
         </div>
     );
