@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { MapCanvas } from './MapCanvas';
 import { Sidebar } from './Sidebar';
 import type { Token } from '../types';
+import { TokenMenu } from './TokenMenu';
 
 export function Layout() {
     const [mapImageUrl, setMapImageUrl] = useState<string | null>(null);
     const [tokens, setTokens] = useState<Token[]>([]);
+    const [tokenMenuOpen, setTokenMenuOpen] = useState(false);
 
     function handleMapFileSelected(file: File) {
         const url = URL.createObjectURL(file);
@@ -24,21 +26,30 @@ export function Layout() {
     }
 
     function handleTokenMove(id: string, position: { x: number; y: number }) {
-        setTokens(tokens.map(token => 
+        setTokens(tokens.map(token =>
             token.id === id ? { ...token, position } : token
         ));
     }
 
     return (
         <div className="layout">
-            {/* TODO function not implemented */}
             <Sidebar
                 onLoadMap={handleMapFileSelected}
-                onAddToken={handleAddToken}
+                onToggleTokenMenu={() => setTokenMenuOpen(prev => !prev)}
                 onLoadGame={function (): void {
                     throw new Error('Function not implemented.');
-                }} />
-            <MapCanvas imageUrl={mapImageUrl} tokens={tokens} onTokenMove={handleTokenMove}/>
+                }}
+            />
+
+            <MapCanvas
+                imageUrl={mapImageUrl}
+                tokens={tokens}
+                onTokenMove={handleTokenMove}
+            />
+
+            {tokenMenuOpen && (
+                <TokenMenu onAddToken={handleAddToken} />
+            )}
         </div>
     );
 }

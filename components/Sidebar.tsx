@@ -2,16 +2,16 @@ import { useRef } from "react";
 
 interface SidebarProps {
     onLoadMap: (file: File) => void; /* -> handleLoadMap */
-    onAddToken?: () => void;
+    onToggleTokenMenu: () => void
     onSaveGame?: () => void; /* -> handleSaveGame */
     onLoadGame: () => void; /* -> handleLoadGame */
 }
 
 export function Sidebar({
     onLoadMap,
-    onAddToken,
     onSaveGame,
-    onLoadGame
+    onLoadGame,
+    onToggleTokenMenu,
 }: SidebarProps) {
 
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -40,7 +40,7 @@ export function Sidebar({
                 style={{display: 'none' }}
             />
 
-            <button onClick={onAddToken}>Add Token</button>
+            <button onClick={onToggleTokenMenu}>Tokens</button>
             <div className="sidebar-spacer" />
             <button onClick={onSaveGame}>Save</button>
             <button onClick={onLoadGame}>Load</button>

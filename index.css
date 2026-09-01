@@ -46,6 +46,8 @@ p {
   flex: 1;
   background: var(--color-bg);
   position: relative;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .token {

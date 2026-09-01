@@ -1,8 +1,9 @@
 :root {
-  --color-bg: #f7f6f3;
-  --color-sidebar-bg: #ffffff;
+  --color-bg: #2c2c2a;
+  --color-menu-bg: #ffffff;
   --color-border: #ddd8cd;
   --color-text: #2c2c2a;
+  --color-highlight: #c96a4e;
 }
 
 * {
@@ -13,6 +14,7 @@ body {
   margin: 0;
   font-family: system-ui, sans-serif;
   color: var(--color-text);
+  background-color: var(--color-bg);
   width: 100%
 }
 
@@ -23,14 +25,17 @@ body {
 }
 
 .sidebar {
-  width: 160px;
+  width: 140px;
+  height: fit-content;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin: 1rem;
   padding: 16px 12px;
-  background: var(--color-sidebar-bg);
-  border-right: 1px solid var(--color-border);
+  background: var(--color-menu-bg);
+  border: 1px solid var(--color-border);
+    border-radius: 10px;
 }
 
 .sidebar .logo {
@@ -39,7 +44,7 @@ body {
   align-self: center;
   aspect-ratio: 1 / 1;
   margin-bottom: 1rem;
-  width: 120px;
+  width: 100px;
 }
 
 .sidebar button {
@@ -59,6 +64,7 @@ body {
 
 .sidebar-spacer {
   flex: 1;
+  min-height: 3rem;
 }
 
 .map-canvas {
@@ -70,4 +76,31 @@ body {
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
+}
+
+.tokenMenu {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 50%;
+  max-width: 90%;
+  height: 60px;
+  background-color: var(--color-menu-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  padding: 0 20px;
+}
+
+.tokenMenu button.addToken {
+  height: 80%;
+  aspect-ratio: 1 / 1;
+  font-size:x-large;
+  color: var(--color-highlight);
+  border: 1px dashed var(--color-highlight);
+  border-radius: 50px;
+  cursor: pointer;;
 }

@@ -16,6 +16,7 @@ export function MapCanvas({ imageUrl, tokens, onTokenMove }: MapCanvasProps) {
     }
 
     function handleMouseMove(e: React.MouseEvent) {
+        e.preventDefault();
         if (!draggingId || !canvasRef.current) { return; }
 
         const rect = canvasRef.current.getBoundingClientRect();
@@ -53,6 +54,7 @@ export function MapCanvas({ imageUrl, tokens, onTokenMove }: MapCanvasProps) {
                     onMouseDown={() => handleMouseDown(token.id)}
                     />
             ))}
+
         </div>
     );
 }
