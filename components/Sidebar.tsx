@@ -42,8 +42,8 @@ export function Sidebar({
 
             <button onClick={onToggleTokenMenu}>Tokens</button>
             <div className="sidebar-spacer" />
-            <button onClick={onSaveGame}>Save</button>
-            <button onClick={onLoadGame}>Load</button>
+            <button onClick={onSaveGame} className="specialButton">Save</button>
+            <button onClick={onLoadGame} className="specialButton">Load</button>
         </aside>
     );
 }
