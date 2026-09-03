@@ -2,7 +2,7 @@ import { useRef } from "react";
 
 interface SidebarProps {
     onLoadMap: (file: File) => void; /* -> handleLoadMap */
-    onToggleTokenMenu: () => void
+    onToggleTokenMenu: () => void /* setTokenMenuOpen */
     onSaveGame?: () => void; /* -> handleSaveGame */
     onLoadGame: () => void; /* -> handleLoadGame */
 }

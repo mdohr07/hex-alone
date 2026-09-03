@@ -32,6 +32,13 @@ export function Layout() {
         ));
     }
 
+    function handleTokenPlacement(id: string, position: { x: number; y: number; }) {
+        setTokens(tokens.map(tkn =>
+            tkn.id === id ? { ...tkn, position, placed: true } : tkn
+        ));
+    }
+
+
     return (
         <div className="layout">
             <Sidebar
@@ -46,6 +53,7 @@ export function Layout() {
                 imageUrl={mapImageUrl}
                 tokens={tokens.filter(tkn => tkn.placed)}
                 onTokenMove={handleTokenMove}
+                onTokenPlacement={handleTokenPlacement}
             />
 
             {tokenMenuOpen && (
